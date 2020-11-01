@@ -275,40 +275,10 @@ barba.init({
   debug: 'true',
   views: [
     {
-      namespace: 'home',
-      beforeEnter() {
-        const hamburger = document.querySelector('.hamburger');
-        hamburger.addEventListener('click', navigationToggle);
-        // logo.href = './index.html';
-      },
-      beforeLeave() {},
-    },
-    {
-      namespace: 'not-found-page',
-      beforeEnter() {
-        // logo.href = '../index.html';
-      },
-      beforeLeave() {},
-    },
-    {
-      namespace: 'algos',
-      beforeEnter() {
-        const hamburger = document.querySelector('.hamburger');
-        hamburger.addEventListener('click', navigationToggle);
-        // logo.href = './index.html';
-      },
-      beforeLeave() {},
-    },
-    {
       namespace: 'learn',
       beforeEnter() {
-        const hamburger = document.querySelector('.hamburger');
-        hamburger.addEventListener('click', navigationToggle);
-        // logo.href = './index.html';
         slideController();
-        console.log('Slider controller running');
       },
-      beforeLeave() {},
     },
   ],
   transitions: [
