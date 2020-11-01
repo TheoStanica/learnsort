@@ -542,6 +542,23 @@ pre {
   background: rgb(200, 200, 200);
 }
 
+footer {
+  /* background: lightcoral; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+footer a {
+  text-decoration: none;
+  color: white;
+  margin-right: 25px;
+}
+footer a:last-child {
+  margin-right: 0;
+}
+
 .soon {
   background: lightseagreen;
 }
