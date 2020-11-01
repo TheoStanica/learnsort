@@ -394,11 +394,14 @@ ul {
   /* background: red; */
 }
 .section-content {
-  height: 100%;
+  /* height: 100%; */
   display: flex;
   flex-direction: column;
   /* align-items: center; */
   justify-content: center;
+  /* height: auto; */
+  min-height: 100%;
+  margin-right: 4px;
 }
 
 pre {
@@ -480,20 +483,24 @@ pre {
   padding: 0 10px;
   border: 4px solid #063562;
 }
-.question-card.correct {
+.question-card.correct,
+.exercise-card.correct {
   border: 4px solid rgb(7, 173, 7);
 }
-.question-card.wrong {
+.question-card.wrong,
+.exercise-card.wrong {
   border: 4px solid red;
 }
 
-.question-card button {
+.question-card button,
+.exercise-card button {
   color: white;
   background: transparent;
   border: 1px solid white;
   padding: 7px 14px;
   margin-bottom: 5px;
   outline: none;
+  cursor: pointer;
 }
 /* .question-card.correct button {
   border: 1px solid rgb(7, 173, 7);
@@ -503,17 +510,36 @@ pre {
   border: 1px solid red;
   color: red;
 } */
-.question-card button.correct {
+.question-card button.correct,
+.exercise-card button.correct {
   border: 1px solid rgb(7, 173, 7);
   color: rgb(7, 173, 7);
 }
-.question-card button.wrong {
+.question-card button.wrong,
+.exercise-card button.wrong {
   border: 1px solid red;
   color: red;
 }
 
 .card-answers {
   padding-bottom: 20px;
+}
+
+.exercise-card {
+  background: #063562;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 4px solid #063562;
+}
+
+.learning textarea {
+  resize: none;
+  outline: none;
+  width: 100%;
+  height: 40vh;
+  padding: 20px;
+  font-family: monospace;
+  background: rgb(200, 200, 200);
 }
 
 .soon {

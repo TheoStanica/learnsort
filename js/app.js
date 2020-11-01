@@ -156,6 +156,35 @@ const questionsController = () => {
   });
 };
 
+const exerciseController = () => {
+  const exercises = document.querySelectorAll('.exercise-card');
+
+  exercises.forEach((exercise) => {
+    const checkButton = exercise.children[2];
+    const solutionInput = exercise.children[1];
+    checkButton.addEventListener('click', () => {
+      const givenSolution = solutionInput.value.replace(/\s+/g, '');
+      const data = checkButton.getAttribute('data-ans');
+      const correctAnswer = document
+        .querySelector(`.${data}`)
+        .children[0].children[0].textContent.replace(/\s+/g, '');
+
+      if (givenSolution === correctAnswer) {
+        exercise.classList.remove('wrong');
+        exercise.classList.add('correct');
+        checkButton.classList.remove('wrong');
+        checkButton.classList.add('correct');
+        solutionInput.readOnly = true;
+      } else {
+        if (!exercise.classList.contains('correct')) {
+          exercise.classList.add('wrong');
+          checkButton.classList.add('wrong');
+        }
+      }
+    });
+  });
+};
+
 const slideController = () => {
   const nextButton = document.getElementById('nextButton');
   const backButton = document.getElementById('backButton');
@@ -238,6 +267,8 @@ const slideController = () => {
   });
 
   questionsController();
+
+  exerciseController();
 };
 
 barba.init({
