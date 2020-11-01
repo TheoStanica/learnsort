@@ -1,0 +1,217 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat';
+  box-sizing: border-box;
+}
+
+.main-container {
+  /* border: 1px solid yellow; */
+  min-height: 100vh;
+  width: 2500px;
+  max-width: 90vw;
+  margin: 0 auto;
+}
+
+body {
+  background-color: #03192e;
+  max-height: 50vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+header {
+  /* border: 1px solid red; */
+  padding: 20px 0;
+  /* border: 1px solid orange; */
+}
+
+.logo {
+  max-width: 100%;
+  height: auto;
+}
+
+.hamburger {
+  /* display: flex; */
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  justify-content: center;
+}
+
+.hamburger.rotate .hamburger-line:nth-child(2) {
+  display: none;
+}
+.hamburger.rotate .hamburger-line:nth-child(1) {
+  transform: translateY(6px) rotate(135deg);
+}
+.hamburger.rotate .hamburger-line:nth-child(3) {
+  transform: translateY(-6px) rotate(-135deg);
+}
+
+.hamburger-line {
+  background-color: white;
+  display: inline-block;
+  width: 40px;
+  height: 2px;
+  margin: 5px 0;
+  transition: all 0.15s ease-in-out;
+  transform: rotate(0);
+}
+
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+}
+.nav-links a {
+  /* border: 1px solid green; */
+  margin: 0 30px;
+  color: white;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+.nav-links a:last-child {
+  margin-right: 0;
+}
+.nav-links {
+  /* border: 1px solid purple; */
+  display: flex;
+  align-items: center;
+}
+
+.nav-links.mobile {
+  transform: translateX(0);
+  /* opacity: 1; */
+  /* z-index: 20; */
+}
+
+.no-overflow {
+  overflow: hidden;
+}
+
+.landing {
+  min-height: calc(100vh - 93px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.landing h1 {
+  color: white;
+  font-size: 3.5rem;
+}
+.landing-text {
+  margin-right: 50px;
+}
+.landing-image {
+  transform: scale(1rem);
+}
+
+.cta-button {
+  box-sizing: initial;
+  position: relative;
+  display: inline-block;
+  color: white;
+  font-size: 2rem;
+  text-decoration: none;
+  background: linear-gradient(160deg, #02a4ff 0%, #d4049a 100%);
+  margin: 20px 0;
+  padding: 0.5rem 1.5rem;
+  border-radius: 1000px;
+  background-blend-mode: multiply;
+  z-index: 1;
+}
+
+.animated-link {
+  position: relative;
+}
+.animated-link.active::after {
+  content: '';
+  position: absolute;
+  left: -10%;
+  bottom: 0;
+  width: 120%;
+  height: 4px;
+  background: linear-gradient(130deg, #02a4ff 0%, #d4049a 100%);
+  transform: scaleX(1);
+}
+
+.animated-link::after {
+  content: '';
+  position: absolute;
+  left: -10%;
+  bottom: 0;
+  width: 120%;
+  height: 4px;
+  background: linear-gradient(130deg, #02a4ff 0%, #d4049a 100%);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 250ms ease-in;
+}
+.animated-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.cta-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 1000px;
+  z-index: -1;
+  transition: transform 200ms ease-in;
+  transform: scaleX(0);
+  transform-origin: right;
+}
+.cta-button:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* .cta-button:hover {
+  background: linear-gradient(130deg, #02a4ff 0%, #d4049a 100%);
+
+  color: white;
+} */
+
+@media only screen and (max-width: 1400px) {
+  .landing {
+    flex-direction: column-reverse;
+  }
+  .landing-image {
+    display: none;
+    position: absolute;
+    top: 20%;
+    left: 60%;
+    z-index: -1;
+    overflow: hidden;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .hamburger {
+    display: flex;
+  }
+  .nav-links {
+    /* display: none; */
+    /* opacity: 0; */
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    top: 90px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 90px);
+    transform: translateX(-100vw);
+    transition: transform 0.4s ease-in-out;
+    flex-direction: column;
+    background-color: #03284b;
+    z-index: 200;
+  }
+  .nav-link a {
+    padding: 50px;
+  }
+}

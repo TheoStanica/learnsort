@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LearnSort - Selection Sort</title>
+    <link rel="stylesheet" href="./styles/style.css" />
+  </head>
+  <body data-barba="wrapper">
+    <div class="learning" data-barba="container" data-barba-namespace="learn">
+      <header>
+        <nav class="nav-header">
+          <div class="logo-img">
+            <a href="/index.html" id="logo"
+              ><img src="./img/Logo.svg" alt="LearnSort Logo"
+            /></a>
+          </div>
+          <div class="nav-links">
+            <ul>
+              <li class="nav-link"><a href="/">Acasa</a></li>
+              <li class="nav-link">
+                <a href="/algoritmi.html">Algoritmi</a>
+              </li>
+              <li class="nav-link"><a href="/not-found.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="hamburger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+          </div>
+        </nav>
+      </header>
+
+      <main>
+        <section class="Introducere">
+          <div class="section-content">
+            <p>
+              Sortarea in programare se refera in general la aranjarea unui
+              tablou de elemente astfel incat elementele lui sunt asezate intr-o
+              anumita ordine (crescatoare sau descrescatoare)
+            </p>
+            <p>Exista mai multe tipuri de sortari, precum:</p>
+            <ul>
+              <li>Selection Sort</li>
+              <li>Insertion Sort</li>
+              <li>Merge Sort</li>
+              <li>Heap Sort</li>
+              <li>Bubble Sort</li>
+              <li>Quick Sort</li>
+            </ul>
+            <p>
+              In aceasta sectiune vom prezenta algoritmul Selection Sort
+              (sortarea prin selectie)
+            </p>
+            <!-- <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+              Consequuntur, dolorum omnis vero odit hic magni! Earum qui eligendi
+              beatae nulla.
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti
+              voluptates qui tempore voluptas odio, dicta voluptatem ad maxime
+              dolore ut voluptatum vero quisquam repudiandae vitae maiores
+              architecto et, facilis eius accusantium sed. Inventore sunt
+              repellendus optio quisquam consequuntur molestias neque magnam
+              autem, excepturi sed, itaque laboriosam nesciunt at consectetur,
+              omnis dicta earum. Est dolores assumenda, dolore quod natus
+              incidunt. Labore aut cumque nobis repudiandae sunt, tempore
+              similique quis ad. Officia quis voluptas voluptatibus perspiciatis
+              rerum beatae nobis nam optio, aliquid soluta ipsum harum tempore,
+              vitae nisi veniam quisquam at exercitationem, tenetur error
+              distinctio. Ex ut quam veniam maxime nemo praesentium.
+            </p> -->
+          </div>
+        </section>
+        <section class="Functionare">
+          <div class="section-content">
+            <p>
+              Sortarea prin selectie (Selection Sort) face parte din algoritmii
+              de sortare cu complexitate O(n^2), lucru care il face ineficient
+              pentru sortarea multimilor mari.
+            </p>
+            <p>
+              Ideea algoritmului este simpla. Multimea este impartita in 2
+              submultimi imaginare: una sortata, care initial nu contine niciun
+              element, si una nesortata, care contine toata multimea initiala
+            </p>
+            <p>
+              La fiecare pas, algoritmul gaseste elementul minim din multimea
+              nesortata, apoi il introduce la finalul multimii sortate.
+            </p>
+            <p>
+              Atunci cand multimea nesortata nu mai are niciun element,
+              algoritmul se opreste
+            </p>
+
+            <p class="soon">Selection Sort video/animation soon</p>
+          </div>
+        </section>
+        <section class="Complexitate">
+          <div class="section-content">
+            <p>
+              Sortarea se opreste atunci cand submultimea nesortata nu mai
+              contine niciun element.
+            </p>
+            <p>
+              Asa cum stim, la fiecare pas, numarul de elemente nesortate scade
+              cu 1.
+            </p>
+            <p>
+              Deci, algoritmul de sortare prin selectie va parcurge n pasi (n
+              fiind numarul de elemente din multimea initiala). Fiecare pas
+              presupune gasirea elementului minim din submultimea nesortata,
+              adica parcurgerea unei submultimi de n, n-1, n-2, ..., 1 elemente.
+            </p>
+            <p>Complexitatea algoritmului este O(n^2).</p>
+            <p class="soon">Grafic comparatie timp de sortare soon</p>
+          </div>
+        </section>
+        <section class="Pseudocod">
+          <div class="section-content">
+            <p>Pseudocodul algoritmului este urmatorul:</p>
+            <!-- <pre><code> for (i = 0; i &lt; n; i++)</code></pre> -->
+            <pre><code>for i ← 1 to n-1
+    min ← i
+    for j ← i+1 to n
+      if A[j] &lt; A[min] then
+        min ← j
+    end for
+    if min != i then
+      interchange A[i] and A[min]
+  end for
+</code></pre>
+          </div>
+        </section>
+        <section class="Implementare">
+          <div class="section-content">
+            <p>Vom prezenta cateva implementari ale algoritmului:</p>
+            <div class="algo-implementation">
+              <nav class="algo-imp-nav">
+                <button id="btn-js">Javascript</button>
+                <button id="btn-java">Java</button>
+                <button id="btn-cplus">C++</button>
+                <button id="btn-python">Python</button>
+              </nav>
+              <div class="algo-imp algo-js">
+                <pre><code>
+function selectionSort(inputArr) { 
+  let n = inputArr.length;
+      
+  for(let i = 0; i &lt; n; i++) {
+      let min = i;
+      for(let j = 0; j &lt; n; j++){
+          if(inputArr[j] &lt; inputArr[min]) {
+              min=j; 
+          }
+        }
+        if (min != i) {
+            let tmp = inputArr[i]; 
+            inputArr[i] = inputArr[min];
+            inputArr[min] = tmp;      
+      }
+  }
+  return inputArr;
+}
+                </code></pre>
+              </div>
+              <div class="algo-imp algo-java">
+                <pre><code>
+public void sort(int arr[]) 
+{ 
+    int n = arr.length; 
+
+    for (int i = 0; i &lt; n-1; i++) 
+    { 
+        int min_idx = i; 
+        for (int j = i+1; j &lt; n; j++) 
+            if (arr[j] &lt; arr[min_idx]) 
+                min_idx = j; 
+
+        if (min_idx != i) {
+          int temp = arr[min_idx]; 
+          arr[min_idx] = arr[i]; 
+          arr[i] = temp;
+        } 
+    } 
+}
+                </code></pre>
+              </div>
+              <div class="algo-imp algo-cplus">
+                <pre><code>
+void swap(int *xp, int *yp) {  
+    int temp = *xp;  
+    *xp = *yp;  
+    *yp = temp;  
+}  
+  
+void selectionSort(int arr[], int n) {  
+    int i, j, min_idx;  
+  
+    for (i = 0; i &lt; n-1; i++)  
+    {  
+        min_idx = i;  
+        for (j = i+1; j &lt; n; j++)  
+        if (arr[j] &lt; arr[min_idx])  
+            min_idx = j;  
+  
+        if (min_idx != i) swap(&arr[min_idx], &arr[i]);  
+    }  
+}
+                </code></pre>
+              </div>
+              <div class="algo-imp algo-python">
+                <pre><code>
+def selection_sort(L):
+for i in range(len(L)-1):
+    min_index = i
+    
+    for j in range(i+1, len(L)-1):
+        if L[j] &lt; L[min_index]:
+            min_index = j
+    
+    if min_index != i:
+        L[i], L[min_index] = L[min_index], L[i]
+                </code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="Intrebari">
+          <div class="section-content">
+            <p>Intrebari</p>
+            <div class="question-card">
+              <div class="card-content">
+                <p>Care dintre urmatorii algoritmi nu este unul de sortare?</p>
+              </div>
+              <div class="card-answers" data-ans="2">
+                <button>Quick Sort</button>
+                <button>Selection Sort</button>
+                <button>Backtracking</button>
+                <button>Bubble Sort</button>
+              </div>
+            </div>
+            <div class="question-card">
+              <div class="card-content">
+                <p>Ce complexitate are algoritmul de sortare prin selectie?</p>
+              </div>
+              <div class="card-answers" data-ans="2">
+                <button>1</button>
+                <button>O(n)</button>
+                <button>O(n^2)</button>
+                <button>n*log(n)</button>
+                <button>Bubble Sort</button>
+              </div>
+            </div>
+            <div class="question-card">
+              <div class="card-content">
+                <p>Ce complexitatesdgsdtie?</p>
+              </div>
+              <div class="card-answers" data-ans="3">
+                <button>1</button>
+                <button>O(n)</button>
+                <button>2</button>
+                <button>4</button>
+                <button>Bubble Sort</button>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="Aplicatii">aplicatii</section>
+      </main>
+      <nav class="nav-learning">
+        <div class="learning-menu">
+          <div id="learn-nav-hamburger" class="learning-hamburger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+          </div>
+          <div class="section-title">Menu</div>
+        </div>
+        <div class="slide-buttons">
+          <button class="" id="backButton">Inapoi</button>
+          <button class="" id="nextButton">Inainte</button>
+        </div>
+      </nav>
+      <div id="learning-menu-extend">
+        <ul>
+          <li>Introducere</li>
+          <li>Functionare</li>
+          <li>Complexitate</li>
+          <li>Pseudocod</li>
+          <li>Implementare</li>
+          <li>Intrebari</li>
+          <li>Aplicatii</li>
+        </ul>
+      </div>
+    </div>
+    <div class="swipe swipe1"></div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"
+      integrity="sha512-IQLehpLoVS4fNzl7IfH8Iowfm5+RiMGtHykgZJl9AWMgqx0AmJ6cRWcB+GaGVtIsnC4voMfm8f2vwtY+6oPjpQ=="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/@barba/core"></script>
+    <script src="./js/app.js"></script>
+  </body>
+</html>
