@@ -271,13 +271,71 @@ const slideController = () => {
   exerciseController();
 };
 
+const inputController = () => {
+  const inputFields = document.querySelectorAll('.formInput');
+  inputFields.forEach((inputField) => {
+    inputField.addEventListener('focus', () => {
+      const value = inputField.parentElement.getAttribute('data-content');
+      if (inputField.value) {
+        setTimeout(() => {
+          inputField.parentElement.setAttribute('data-value', value);
+        }, 700);
+      }
+    });
+    inputField.addEventListener('focusout', () => {
+      const value = inputField.parentElement.getAttribute('data-content');
+      if (inputField.value) {
+        setTimeout(() => {
+          inputField.parentElement.setAttribute('data-value', '');
+        }, 700);
+      }
+    });
+  });
+};
+
 barba.init({
   debug: 'true',
   views: [
     {
+      namespace: 'home',
+      beforeEnter() {
+        let hamburger = document.querySelector('.hamburger');
+        hamburger.addEventListener('click', navigationToggle);
+      },
+    },
+    {
+      namespace: 'algos',
+      beforeEnter() {
+        let hamburger = document.querySelector('.hamburger');
+        hamburger.addEventListener('click', navigationToggle);
+      },
+    },
+    {
       namespace: 'learn',
       beforeEnter() {
         slideController();
+        let hamburger = document.querySelector('.hamburger');
+        hamburger.addEventListener('click', navigationToggle);
+      },
+    },
+    {
+      namespace: 'contact',
+      beforeEnter() {
+        let hamburger = document.querySelector('.hamburger');
+        hamburger.addEventListener('click', navigationToggle);
+        inputController();
+        var map = new ol.Map({
+          target: 'map',
+          layers: [
+            new ol.layer.Tile({
+              source: new ol.source.OSM(),
+            }),
+          ],
+          view: new ol.View({
+            center: ol.proj.fromLonLat([23.835052, 44.30853]),
+            zoom: 16,
+          }),
+        });
       },
     },
   ],
@@ -310,3 +368,7 @@ barba.hooks.after((data) => {
   let hamburger = document.querySelector('.hamburger');
   hamburger.addEventListener('click', navigationToggle);
 });
+
+// GLOBAL HOOK IS NOT ENOUGH. NEED TO ADD NAVTOGGLE EVENT BEFORE EVERY NAMESPACE!
+
+// TRY BEFOREONCE HOOK beforeOnce or Once
