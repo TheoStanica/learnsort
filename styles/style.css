@@ -548,6 +548,7 @@ footer a:last-child {
   margin: 50px 0;
   border-radius: 5px;
   border: none;
+  color: white;
 }
 .contact-form textarea {
   width: 100%;
