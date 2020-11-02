@@ -581,6 +581,7 @@ form textarea {
   position: relative;
   background: #063562;
   border: 0;
+  color: white;
 }
 
 .input-subject {
