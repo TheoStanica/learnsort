@@ -9,7 +9,8 @@ body {
   color: #eee;
   font-family: 'Montserrat', sans-serif;
   min-width: 320px;
-  max-width: 2100px;
+  /* max-width: 2100px; */
+  max-width: 1920px;
   margin: 0 auto;
   overflow-x: hidden;
 }
@@ -541,7 +542,8 @@ footer a:last-child {
 .contact-form {
   flex: 1;
 }
-.contact-form input {
+.contact-form input,
+input {
   display: block;
   height: 50px;
   width: 100%;
@@ -549,6 +551,25 @@ footer a:last-child {
   border-radius: 5px;
   border: none;
   color: white;
+}
+.sorting-implementation input {
+  max-width: 100px;
+  outline: none;
+  color: black;
+  padding: 0 10px;
+  font-size: 1.1rem;
+  margin: 0 10px 5px 5px;
+  height: 33px;
+  display: inline-block;
+}
+.sorting-implementation {
+  margin-bottom: 3rem;
+}
+.sorting-implementation button {
+  background: transparent;
+}
+.array-elements {
+  margin: 20px 0;
 }
 .contact-form textarea {
   width: 100%;
@@ -637,6 +658,20 @@ form textarea {
   margin-top: 20px;
 }
 
+.content-wrapper {
+  width: 80%;
+  margin: 0 auto;
+}
+video {
+  width: 100%;
+  height: auto;
+  outline: none;
+}
+.chart-div {
+  margin: 0 auto;
+  width: 100%;
+}
+
 .soon {
   background: lightseagreen;
 }
@@ -695,6 +730,9 @@ form textarea {
     margin-right: 0;
     display: block;
     text-align: center;
+  }
+  .content-wrapper {
+    width: 100%;
   }
 }
 

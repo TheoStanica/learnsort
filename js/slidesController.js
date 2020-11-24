@@ -167,6 +167,65 @@ const exerciseController = () => {
   });
 };
 
+let selectionSort = (arr) => {
+  let len = arr.length;
+  for (let i = 0; i < len; i++) {
+    let min = i;
+    for (let j = i + 1; j < len; j++) {
+      if (arr[min] > arr[j]) {
+        min = j;
+      }
+    }
+    if (min !== i) {
+      let tmp = arr[i];
+      arr[i] = arr[min];
+      arr[min] = tmp;
+    }
+  }
+  return arr;
+};
+
+const sortingExercise = () => {
+  const arrayLengthButton = document.getElementById(
+    'selection-sort-element-number-button'
+  );
+
+  arrayLengthButton.addEventListener('click', () => {
+    const arrayLengthValue = document.getElementById('array-length').value;
+
+    if (!arrayLengthValue || isNaN(arrayLengthValue) || arrayLengthValue < 1) {
+      alert('Valoare introdusa nu este valida');
+    }
+
+    const arrayInputZone = document.querySelector('.array-elements');
+    arrayInputZone.innerHTML = '';
+
+    for (let i = 0; i < arrayLengthValue; i++) {
+      arrayInputZone.innerHTML += '<input class="array-element" type="text" />';
+    }
+    arrayInputZone.innerHTML +=
+      '<button class="cta-button2" id="selection-sort-sort-button">Sorteaza</button>';
+
+    const sortButton = document.getElementById('selection-sort-sort-button');
+
+    sortButton.addEventListener('click', () => {
+      const arrayElements = document.querySelectorAll('.array-element');
+      let arrayToSort = [];
+
+      arrayElements.forEach((element) => {
+        if (Number.isInteger(parseInt(element.value))) {
+          arrayToSort.push(parseInt(element.value));
+        }
+      });
+      const sortedArray = selectionSort(arrayToSort);
+
+      const resultZone = document.querySelector('.sort-result');
+
+      resultZone.innerText = `Vectorul sortat este: ${sortedArray}`;
+    });
+  });
+};
+
 const slideController = () => {
   const nextButton = document.getElementById('nextButton');
   const backButton = document.getElementById('backButton');
@@ -186,7 +245,7 @@ const slideController = () => {
     document.querySelector('.algo-js')
   );
   activateButton(jsButton);
-  // gdgsdg
+
   updateSectionTitle();
 
   changeSlide(slides, currentSlide);
@@ -199,6 +258,7 @@ const slideController = () => {
     changeSlide(slides, ++currentSlide);
     updateButtonsStatus(currentSlide, slides);
     updateSectionTitle();
+    drawChart();
   });
 
   backButton.addEventListener('click', () => {
@@ -206,6 +266,7 @@ const slideController = () => {
     changeSlide(slides, --currentSlide);
     updateButtonsStatus(currentSlide, slides);
     updateSectionTitle();
+    drawChart();
   });
 
   jsButton.addEventListener('click', () => {
@@ -251,6 +312,31 @@ const slideController = () => {
   questionsController();
 
   exerciseController();
+  sortingExercise();
 };
 
 slideController();
+
+// google chart
+google.charts.load('current', { packages: ['corechart'] });
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+    ['Algorithm', 'N = 10000', 'N = 20000', 'N = 30000', 'N = 50000'],
+    ['Selection Sort', 3.09, 11.22, 45.52, 71.75],
+    ['Bubble Sort', 7.18, 29.96, 70.88, 192.88],
+    ['Quick Sort', 0.427, 1.03, 2.66, 6.91],
+  ]);
+
+  var options = {
+    title: 'Viteza de sortare al vectorului(secunde)',
+    height: 400,
+  };
+  var chart = new google.visualization.ColumnChart(
+    document.getElementById('chart_div')
+  );
+  chart.draw(data, options);
+}
+window.addEventListener('resize', drawChart);
+window.onresize = drawChart;
